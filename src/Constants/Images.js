@@ -7,8 +7,9 @@ const IMAGE = {
     //IMAGENES
     IMAGE_LOGO: require("../../assets/images/logo.png"),
     IMAGE_PROFILE: require("../../assets/images/drawer-cover.png"),
-    IMAGE_BACKGROUND: require("../../assets/images/fondo1.jpg")
+    IMAGE_BACKGROUND: require("../../assets/images/fondo2.jpg")
 }
+
 
 export {
     IMAGE

@@ -2,7 +2,9 @@ import React from "react";
 import { StyleSheet, View, Image } from "react-native";
 import { Text, Container, List, ListItem, Content } from "native-base";
 import { IMAGE } from "../Constants/Images";
-const routes = ["Resumen", "Pedidos", "Menu", "Pedido"];
+import * as firebase from "firebase";
+
+const routes = ["Principal", "Screen1", "Screen2", "Screen3"];
 export default class MenuOpciones extends React.Component {
   render() {
     return (
@@ -14,7 +16,7 @@ export default class MenuOpciones extends React.Component {
               height: 120,
               width: "100%",
               alignSelf: "stretch",
-              position: "absolute"
+              position: "absolute",
             }}
           />
           <Image
@@ -24,14 +26,14 @@ export default class MenuOpciones extends React.Component {
               width: 70,
               position: "absolute",
               alignSelf: "center",
-              top: 20
+              top: 20,
             }}
             source={IMAGE.IMAGE_LOGO}
           />
           <List
             dataArray={routes}
             contentContainerStyle={{ marginTop: 120 }}
-            renderRow={data => {
+            renderRow={(data) => {
               return (
                 <ListItem
                   button
@@ -48,13 +50,14 @@ export default class MenuOpciones extends React.Component {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-                marginTop: 10
+                marginTop: 10,
               }}
             >
               <Image source={IMAGE.ICON_SALIR} style={styles.sideMenuIcon} />
               <Text
                 style={styles.menuText}
                 onPress={() => {
+                  firebase.auth().signOut();
                   this.props.navigation.navigate("Login");
                 }}
               >
@@ -75,11 +78,11 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     marginRight: 10,
-    marginLeft: 20
+    marginLeft: 20,
   },
 
   menuText: {
     fontSize: 15,
-    color: "#222222"
-  }
+    color: "#222222",
+  },
 });

@@ -1,17 +1,17 @@
 import React from "react";
-import Resumen from "../Screens/Resumen";
+import Principal from "../Screens/Principal";
 import MenuOpciones from "../Components/MenuOpciones";
-import OrdenStack from "./OrdenStack";
+import OptionsStack from "./OptionsStack";
 import { createDrawerNavigator } from "react-navigation-drawer";
 
 const HomeStack = createDrawerNavigator(
   {
-    Orden: { screen: OrdenStack },
-    Resumen: { screen: Resumen }
+    Options: { screen: OptionsStack },
+    Principal: { screen: Principal },
   },
   {
-    initialRouteName: "Orden",
-    contentComponent: props => <MenuOpciones {...props} />
+    initialRouteName: "Principal",
+    contentComponent: (props) => <MenuOpciones {...props} />,
   }
 );
 export default HomeStack;

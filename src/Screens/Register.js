@@ -1,55 +1,30 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  AsyncStorage,
-  ImageBackground,
-  View,
-  Dimensions,
-  TextInput,
-  TouchableHighlight
-} from "react-native";
-import { Text, Button } from "native-base";
+import { StyleSheet, ImageBackground, Image, View, Text } from "react-native";
+import { Root } from "native-base";
 import { IMAGE } from "../Constants/Images";
-const { width: WIDTH } = Dimensions.get("window");
+import RegisterForm from "../Components/Account/RegisterForm";
 
 export default class Register extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.navigation.state.params);
-    this.state = {
-      ruta: this.props.navigation.state.params.rutaParametro
-    };
   }
-
-  SaveRoute = () => {
-    AsyncStorage.setItem("restobarRuta", this.state.ruta);
-    this.props.navigation.navigate("Login");
-  };
-
   render() {
     return (
-      <ImageBackground
-        source={IMAGE.IMAGE_BACKGROUND}
-        style={styles.backgroundContainer}
-      >
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.inputRuta}
-            placeholder="ruta"
-            value={this.state.ruta}
-            onChangeText={ruta => this.setState({ ruta })}
-            placeholderTextColor={"rgba(255,255,255,0.7)"}
-            underLineColorAndroid="transparent"
-          />
-        </View>
-
-        <TouchableHighlight
-          style={styles.btnLogin}
-          onPress={this.SaveRoute.bind(this)}
+      <Root>
+        <ImageBackground
+          source={IMAGE.IMAGE_BACKGROUND}
+          style={styles.backgroundContainer}
         >
-          <Text style={styles.text}>Guardar y Salir</Text>
-        </TouchableHighlight>
-      </ImageBackground>
+          <View style={styles.logoContainer}>
+            <Image source={IMAGE.IMAGE_LOGO} style={styles.logo} />
+            <Text style={styles.logoText}>CAMBALACHE APP!</Text>
+          </View>
+
+          <View style={styles.viewContainer}>
+            <RegisterForm />
+          </View>
+        </ImageBackground>
+      </Root>
     );
   }
 }
@@ -60,32 +35,24 @@ const styles = StyleSheet.create({
     height: null,
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
-  inputContainer: {
-    marginTop: 10
+  logo: {
+    width: 120,
+    height: 120,
   },
-  btnLogin: {
-    width: WIDTH - 55,
-    height: 45,
-    borderRadius: 25,
-    backgroundColor: "#432577",
-    justifyContent: "center",
-    marginTop: 20
+  viewContainer: {
+    marginTop: 10,
   },
-  text: {
-    color: "rgba(255,255,255,0.7)",
-    fontSize: 16,
-    textAlign: "center"
+  logoContainer: {
+    alignItems: "center",
+    marginBottom: 50,
   },
-  inputRuta: {
-    color: "#fff",
-    width: WIDTH - 40,
-    height: 45,
-    borderRadius: 25,
-    paddingLeft: 15,
-    fontSize: 15,
-    backgroundColor: "rgba(0,0,0,0.35)",
-    marginHorizontal: 25
-  }
+  logoText: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "500",
+    marginTop: 10,
+    opacity: 0.5,
+  },
 });

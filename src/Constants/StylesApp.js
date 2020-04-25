@@ -1,0 +1,9 @@
+const STYLESAPP = {
+    APP_BORDER_COLOR: '#00a680',
+    APP_BACKGROUND_COLOR: '#f2f2f2',
+    BUTTON_BACKGROUND_COLOR: '#00a680'
+}
+
+export {
+    STYLESAPP
+}
