@@ -6,7 +6,6 @@ import {
   Dimensions,
   TextInput,
   TouchableOpacity,
-  TouchableHighlight,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { validateEmail } from "../../Utils/Validation";
@@ -43,7 +42,7 @@ function LoginForm(props) {
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
-          navigation.navigate("Principal");
+          navigation.navigate("MyAccount");
         })
         .catch((error) => {
           Toast.show({
@@ -105,14 +104,14 @@ function LoginForm(props) {
           <Text style={styles.text}>Entrar</Text>
         </TouchableOpacity>
 
-        <TouchableHighlight
+        <TouchableOpacity
           style={styles.btn}
           onPress={() => {
             navigation.navigate("Register");
           }}
         >
           <Text style={styles.text}>Registrate</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
       <Loading text="Iniciando sesion" isVisible={isVisibleLoading} />
     </View>

@@ -1,8 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  ScrollView,
+} from "react-native";
 import * as firebase from "firebase";
 import InfoUser from "../../Components/Account/InfoUser";
 import Loading from "../../Components/Loading";
+import { STYLESAPP } from "./../../Constants/StylesApp";
 
 export default function UserLogged() {
   const [userInfo, setUserInfo] = useState({});
@@ -17,34 +24,47 @@ export default function UserLogged() {
     setReloadData(false);
   }, [reloadData]);
   return (
-    <View style={styles.viewUserInfo}>
+    <ScrollView style={styles.viewBody} centerContent={true}>
       <InfoUser
         userInfo={userInfo}
         setReloadData={setReloadData}
         setIsLoading={setIsLoading}
         setTextLoading={setTextLoading}
       />
+      <View style={styles.viewBtn}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => firebase.auth().signOut()}
+        >
+          <Text style={styles.text}>Cerrar sesión</Text>
+        </TouchableOpacity>
+      </View>
+
       <Loading text={textLoading} isVisible={isLoading} />
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  viewUserInfo: {
-    backgroundColor: "#f2f2f2",
+  viewBody: {
+    backgroundColor: STYLESAPP.APP_BACKGROUND_COLOR,
   },
-  btncloseSession: {
-    marginTop: 30,
-    borderRadius: 0,
-    backgroundColor: "#fff",
-    borderTopWidth: 1,
-    borderTopColor: "#e3e3e3",
-    borderBottomWidth: 1,
-    borderBottomColor: "#e3e3e3",
-    paddingTop: 10,
-    paddingBottom: 10,
+  viewBtn: {
+    flex: 1,
+    alignItems: "center",
   },
-  btnCloseSessionText: {
-    color: "#00a680",
+  btn: {
+    width: 200,
+    height: 45,
+    borderRadius: 25,
+    backgroundColor: STYLESAPP.BUTTON_BACKGROUND_COLOR,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 15,
+  },
+  text: {
+    color: "rgba(255,255,255,0.7)",
+    fontSize: 16,
+    textAlign: "center",
   },
 });

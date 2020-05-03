@@ -52,7 +52,7 @@ function RegisterForm(props) {
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then(() => {
-          navigation.navigate("Principal");
+          navigation.navigate("MyAccount");
         })
         .catch((error) => {
           Toast.show({
