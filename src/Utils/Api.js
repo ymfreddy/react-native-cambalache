@@ -5,6 +5,8 @@ export const reauthenticate = password => {
     user.email,
     password
   );
+
+
   console.log("email:", user.email);
   console.log("password:", password);
   return user.reauthenticateWithCredential(credentials);
